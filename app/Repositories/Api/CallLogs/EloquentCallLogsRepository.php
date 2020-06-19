@@ -13,7 +13,7 @@ class EloquentCallLogsRepository implements CallLogsRepository
             {
                 $query = $query->where('status', $request->get('status'));
             }
-        $query = $query->get();
+        $query = $query->get()->toArray();
         return $query;
     }
 }
