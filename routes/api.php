@@ -15,4 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('get-logs','CallLogsController@logDetails');
+Route::get('chart-data','CallLogsController@chartData');
 

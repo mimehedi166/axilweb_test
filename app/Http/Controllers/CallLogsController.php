@@ -30,5 +30,20 @@ class CallLogsController extends Controller
         return response()->json(["success"=>$success, 'status' => $status, 'message'=>$msg,'data'=>$response]);
     }
 
+    public function chartData(Request $request)
+    {
+        $success = false;
+        $status = 404;
+        $msg = "Couldn't found any data.";
+        $response = $this->log->chartData($request);
+        if (!empty($response))
+        {
+            $success = true;
+            $status = 200;
+            $msg = "Data Successfully Found.";
+        }
+        return response()->json(["success"=>$success, 'status' => $status, 'message'=>$msg,'data'=>$response]);
+    }
+
 
 }
