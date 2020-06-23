@@ -59,7 +59,7 @@ class EloquentCallLogsRepository implements CallLogsRepository
                     WHERE
                         {$conditionDateRange} {$conditionStatus}) AS call_count
             FROM
-                axileweb_test.call_logs
+                call_logs
             ORDER BY call_date ASC;"
         );
 
