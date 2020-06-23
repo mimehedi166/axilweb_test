@@ -33,7 +33,7 @@ class EloquentCallLogsRepository implements CallLogsRepository
         // TODO: Implement chartData() method.
         $response = [];
         $conditionStatus = '';
-        $conditionDateRange = " call_date BETWEEN `call` AND `call`";
+        $conditionDateRange = "";
         if ($request->has('status') && !empty($request->get('status')))
         {
             $conditionStatus = " AND status = '{$request->get('status')}'";
@@ -46,7 +46,7 @@ class EloquentCallLogsRepository implements CallLogsRepository
             {
                 $toDate = $request->get('to_date');
             }
-            $conditionDateRange = " call_date between '{$fromDate}' AND '{$toDate}'";
+            $conditionDateRange = " WHERE call_date between '{$fromDate}' AND '{$toDate}'";
         }
 
         $query = DB::select(
@@ -57,9 +57,9 @@ class EloquentCallLogsRepository implements CallLogsRepository
                     FROM
                         call_logs
                     WHERE
-                        {$conditionDateRange} {$conditionStatus}) AS call_count
+                         call_date BETWEEN `call` AND `call` {$conditionStatus}) AS call_count
             FROM
-                call_logs
+                call_logs {$conditionDateRange}
             ORDER BY call_date ASC;"
         );
 
