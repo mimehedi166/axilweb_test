@@ -33,7 +33,7 @@ class EloquentCallLogsRepository implements CallLogsRepository
         // TODO: Implement chartData() method.
         $response = [];
         $conditionStatus = '';
-        $conditionDateRange = "call_date BETWEEN `call` AND `call`";
+        $conditionDateRange = " call_date BETWEEN `call` AND `call`";
         if ($request->has('status') && !empty($request->get('status')))
         {
             $conditionStatus = " AND status = '{$request->get('status')}'";
@@ -62,6 +62,8 @@ class EloquentCallLogsRepository implements CallLogsRepository
                 axileweb_test.call_logs
             ORDER BY call_date ASC;"
         );
+
+        //Custom response to load map data
         if (!empty($query))
         {
             foreach ($query AS $item)
